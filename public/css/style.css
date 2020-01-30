@@ -1,0 +1,8 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: rgba(10, 20, 30);
+  font-family: Helvetica, sans-serif;
+  color: white;
+}

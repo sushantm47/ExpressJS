@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const exphbs = require("express-handlebars");
 const path = require("path");
 const logger = require("./Middleware/logger");
 // app.get("/", (req, res) => {
@@ -8,10 +9,18 @@ const logger = require("./Middleware/logger");
 
 ///app.use(logger);
 
+//Handle-bars MiddleWare
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engoine", "handlebars");
+
 //Body Parser Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+//HomePage Route
+app.get("/", (req, res) => res.render("index.handlebars"));
+
+//STATIC pages folder
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api/members", require("./routes/api/members"));

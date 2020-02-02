@@ -3,6 +3,8 @@ const app = express();
 const exphbs = require("express-handlebars");
 const path = require("path");
 const logger = require("./Middleware/logger");
+const members = require("./members.js");
+
 // app.get("/", (req, res) => {
 //   res.send("<h1>HELLO!</h1>");
 // });
@@ -18,7 +20,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //HomePage Route
-app.get("/", (req, res) => res.render("index.handlebars"));
+app.get("/", (req, res) =>
+  res.render("index.handlebars", {
+    title: "Members App",
+    members
+  })
+);
 
 //STATIC pages folder
 app.use(express.static(path.join(__dirname, "public")));
